@@ -1,7 +1,7 @@
 #include "video.h"
 
 static const unsigned short VIDEO_NUM_COLUMS = 80; 
-static const unsigned short VIDEO_NUM_ROWS = 24; 
+static const unsigned short VIDEO_NUM_ROWS = 25; 
 static unsigned short video_xpos = 0;
 static unsigned short video_ypos = 0;
 static volatile unsigned char* video_ptr;
@@ -19,7 +19,15 @@ void cls() {
 }
 
 void video_putchar(const char c) {
-  video_ptr[video_xpos * 2] = c;
-  video_ptr[video_xpos * 2 + 1] = 0x07;
+  int video_pos = (video_xpos + (video_ypos * VIDEO_NUM_COLUMS)) * 2;
+  video_ptr[video_pos] = c;
+  video_ptr[video_pos + 1] = 0x07;
   video_xpos++;
+  if(video_xpos == VIDEO_NUM_COLUMS) {
+    video_xpos = 0;
+    video_ypos++;
+    if(video_ypos == VIDEO_NUM_ROWS) {
+      video_ypos = 0;
+    }
+  }
 }
