@@ -1,5 +1,5 @@
 CC=gcc
-CFLAGS=-m32 -O3 -ffreestanding -nostdlib -nostdinc -Wall -Iinclude
+CFLAGS=-m32 -ffreestanding -nostdlib -nostdinc -Wall -Iinclude
 ASFLAGS=$(CFLAGS)
 LDFLAGS=$(CFLAGS) -Wl,--build-id=none
 OBJS=kernel.o
@@ -9,9 +9,9 @@ ARCHDIR=arch/$(ARCH)
 
 LDFLAGS+=-T $(ARCHDIR)/linker.ld
 
-include $(ARCHDIR)/makefile.conf
-
 all: kernel
+
+include $(ARCHDIR)/makefile.conf
 
 kernel: $(OBJS)
 
