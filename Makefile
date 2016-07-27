@@ -1,7 +1,7 @@
 CC=gcc
 CFLAGS=-m32 -O3 -ffreestanding -nostdlib -nostdinc -Wall -Iinclude
 ASFLAGS=$(CFLAGS)
-LDFLAGS=$(CFLAGS)
+LDFLAGS=$(CFLAGS) -Wl,--build-id=none
 OBJS=kernel.o
 
 ARCH=x86

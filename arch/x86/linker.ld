@@ -6,7 +6,7 @@ SECTIONS
   {
     *(.multiboot)
     *(.text)
-    *(.rotext)
+    *(.rodata*)
     . = ALIGN(4K);
   }
 
