@@ -1,5 +1,5 @@
 CC=gcc
-CFLAGS=-m32 -ffreestanding -nostdlib -nostdinc -Wall
+CFLAGS=-m32 -O3 -ffreestanding -nostdlib -nostdinc -Wall -Iinclude
 ASFLAGS=$(CFLAGS)
 LDFLAGS=$(CFLAGS)
 OBJS=kernel.o

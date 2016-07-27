@@ -10,6 +10,7 @@ _start:
   mov $stack_top, %esp
   call kmain
 loop:
+  hlt
   jmp loop
 
 .bss
