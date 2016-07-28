@@ -1,13 +1,20 @@
-CC=gcc
-CFLAGS=-m32 -ffreestanding -nostdlib -nostdinc -Wall -Iinclude
-ASFLAGS=$(CFLAGS)
-LDFLAGS=$(CFLAGS) -Wl,--build-id=none
-OBJS=kernel.o
-
-ARCH=x86
+ARCH?=x86
 ARCHDIR=arch/$(ARCH)
 
-LDFLAGS+=-T $(ARCHDIR)/linker.ld
+ifeq ($(ARCH),x86)
+CC=gcc
+else ifeq ($(ARCH),arm)
+CC=arm-none-eabi-gcc
+endif
+ifeq ($(ARCH),x86)
+CFLAGS=-m32
+else ifeq ($(ARCH),arm)
+CFLAGS=-mcpu=arm926ej-s
+endif
+CFLAGS+=-ffreestanding -nostdlib -nostdinc -Wall -Iinclude
+ASFLAGS=$(CFLAGS)
+LDFLAGS=$(CFLAGS) -Wl,--build-id=none -T $(ARCHDIR)/linker.ld
+OBJS=kernel.o
 
 all: kernel
 

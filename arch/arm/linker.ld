@@ -2,9 +2,21 @@ ENTRY(_start)
 SECTIONS
 {
  . = 0x10000;
- .text : { *(.text) }
- .data : { *(.data) }
- .bss : { *(.bss) }
+ .text : { 
+           *(.text)
+           *(.rodata*)
+           . = ALIGN(4K);
+         }
+
+ .data : {
+           *(.data)
+           . = ALIGN(4K);
+         }
+
+ .bss : {
+          *(.bss)
+          . = ALIGN(4K);
+        }
  . = . + 0x1000; /* 4kB of stack memory */
  stack_top = .;
 }
