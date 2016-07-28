@@ -1,5 +1,4 @@
 #include "gdt.h"
-#include "asm.h"
 
 const struct gdt_entry_t gdt[3] = {
                                     {
@@ -32,6 +31,19 @@ const struct gdt_ptr_t gdt_ptr = {
                                    .limit = (sizeof(struct gdt_entry_t) * 3) - 1,
                                    .base = (unsigned int) &gdt
                                  };
+
+
+static void gdt_flush() {
+  asm volatile("lgdt %0" : : "m" (gdt_ptr));
+  asm volatile("movl $0x10, %eax\n \
+                movl %eax, %ds\n \
+                movl %eax, %es\n \
+                movl %eax, %fs\n \
+                movl %eax, %gs\n \
+                movl %eax, %ss\n \
+                ljmp $(0x08), $flush\n \
+                flush:");
+}
 
 void init_gdt() {
   gdt_flush();
