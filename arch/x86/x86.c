@@ -5,6 +5,7 @@
 #include "idt.h"
 #include "irq.h"
 #include "isrs.h"
+#include "paging.h"
 
 void init_arch() {
   init_video();
@@ -12,5 +13,6 @@ void init_arch() {
   init_idt();
   remap_irqs();
   init_isrs();
+  init_paging();
   sti();
 }
