@@ -1,12 +1,11 @@
 #ifndef IRQ_H
 #define IRQ_H
 
-struct regs
-{
-	unsigned int ds;					/* data segment selector */
-	unsigned int edi, esi, ebp, esp, ebx, edx, ecx, eax;	/* pushed by 'pusha' */
-	unsigned int int_no, err_code;				/* our 'push byte #' and ecodes do this */
-	unsigned int eip, cs, eflags, useresp, ss;              /* pushed by the processor automatically */
+struct regs {
+	unsigned int gs, fs, es, ds;
+	unsigned int edi, esi, ebp, esp, ebx, edx, ecx, eax;
+	unsigned int int_no, err_code;
+	unsigned int eip, cs, eflags, useresp, ss;
 };
 
 void remap_irqs();
