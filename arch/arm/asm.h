@@ -14,4 +14,64 @@ static inline void copy_interrupt_table() {
        bne copy_loop_start");
 }
 
+static inline void enable_irq() {
+#if __ARM_ARCH >= 6
+  asm("cpsie i");
+#else
+  asm("mrs r1, cpsr\n \
+       bic r1, r1, #0x80\n \
+       msr cpsr_c, r1");
+#endif
+}
+
+static inline void disable_irq() {
+#if __ARM_ARCH >= 6
+  asm("cpsid i");
+#else
+  asm("mrs r1, cpsr\n \
+       orr r1, r1, #0x80\n \
+       msr cpsr_c, r1");
+#endif
+}
+
+static inline void enable_fiq() {
+#if __ARM_ARCH >= 6
+  asm("cpsie f");
+#else
+  asm("mrs r1, cpsr\n \
+       bic r1, r1, #0x40\n \
+       msr cpsr_c, r1");
+#endif
+}
+
+static inline void disable_fiq() {
+#if __ARM_ARCH >= 6
+  asm("cpsid f");
+#else
+  asm("mrs r1, cpsr\n \
+       orr r1, r1, #0x40\n \
+       msr cpsr_c, r1");
+#endif
+}
+
+static inline void enable_irq_and_fiq() {
+#if __ARM_ARCH >= 6
+  asm("cpsie if");
+#else
+  asm("mrs r1, cpsr\n \
+       bic r1, r1, #0xC0\n \
+       msr cpsr_c, r1");
+#endif
+}
+
+static inline void disable_irq_and_fiq() {
+#if __ARM_ARCH >= 6
+  asm("cpsid if");
+#else
+  asm("mrs r1, cpsr\n \
+       orr r1, r1, #0xC0\n \
+       msr cpsr_c, r1");
+#endif
+}
+
 #endif
