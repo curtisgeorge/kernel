@@ -1,5 +1,7 @@
+#include <printk.h>
 #include "irq.h"
 #include "asm.h"
+#include "keyboard_map.h"
 
 extern void _irq0();
 extern void _irq1();
@@ -54,4 +56,17 @@ void irq_handler(struct regs* r)
     outb(0xA0, 0x20);
   }
   outb(0x20, 0x20);
+  if (r->int_no == 33) {
+    unsigned char status = inb(0x64);
+    if(status & 1) {
+      char val = inb(0x60);
+      if(val < 0) {
+        return;
+      }
+      char str[2];
+      str[0] = keyboard_map[(unsigned char) val];
+      str[1] = '\0';
+      printk(str);
+    }
+  }
 }
