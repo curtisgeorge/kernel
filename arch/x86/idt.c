@@ -1,4 +1,5 @@
 #include "idt.h"
+#include "asm.h"
 
 struct idt_entry_t idt[256];
 const struct idt_ptr_t idt_ptr = {
@@ -25,5 +26,5 @@ void init_idt() {
     idt_addr[i] = 0;
   }
 
-  asm volatile ("lidt %0" : : "m" (idt_ptr));
+  lidt(&idt_ptr);
 }
