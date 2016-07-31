@@ -1,3 +1,4 @@
+#include <stdint.h>
 #include "gdt.h"
 #include "asm.h"
 
@@ -30,7 +31,7 @@ const struct gdt_entry_t gdt[3] = {
 
 const struct gdt_ptr_t gdt_ptr = {
                                    .limit = (sizeof(struct gdt_entry_t) * 3) - 1,
-                                   .base = (unsigned int) &gdt
+                                   .base = (uint32_t) &gdt
                                  };
 
 

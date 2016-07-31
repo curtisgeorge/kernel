@@ -9,7 +9,7 @@ void init_paging() {
     page_dir[i] = 0;
   }
 
-  load_page_dir((unsigned int) page_dir);
+  load_page_dir((uint32_t) page_dir);
   enable_pse();
   enable_paging();
 }

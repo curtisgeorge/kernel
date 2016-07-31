@@ -19,7 +19,7 @@ extern void _irq12();
 extern void _irq13();
 extern void _irq14();
 extern void _irq15();
-extern void idt_set_gate(unsigned char num, unsigned long base, unsigned short sel, unsigned char flags);
+extern void idt_set_gate(uint8_t num, uint64_t base, uint16_t sel, uint8_t flags);
 
 void remap_irqs() {
   outb(0x20, 0x11);
@@ -57,14 +57,14 @@ void irq_handler(struct regs* r)
   }
   outb(0x20, 0x20);
   if (r->int_no == 33) {
-    unsigned char status = inb(0x64);
+    uint8_t status = inb(0x64);
     if(status & 1) {
       char val = inb(0x60);
       if(val < 0) {
         return;
       }
       char str[2];
-      str[0] = keyboard_map[(unsigned char) val];
+      str[0] = keyboard_map[(uint8_t) val];
       str[1] = '\0';
       printk(str);
     }

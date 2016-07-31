@@ -1,6 +1,7 @@
 #ifndef ASM_H
 #define ASM_H
 
+#include <stdint.h>
 #include "gdt.h"
 #include "idt.h"
 
@@ -35,22 +36,21 @@ static inline void lidt(const struct idt_ptr_t* idt_ptr) {
   asm volatile ( "lidt %0" : : "m" (*idt_ptr) );
 }
 
-static inline void outb(unsigned short port, unsigned char val)
+static inline void outb(uint16_t port, uint8_t val)
 {
   asm volatile ( "outb %0, %1" : : "a"(val), "Nd"(port) );
 }
 
 
-static inline unsigned char inb(unsigned short port)
+static inline uint8_t inb(uint16_t port)
 {
-    unsigned char ret;
+    uint8_t ret;
     asm volatile ( "inb %1, %0" : "=a"(ret) : "Nd"(port) );
     return ret;
 }
 
-static inline void load_page_dir(unsigned int page_dir) {
+static inline void load_page_dir(uint32_t page_dir) {
   asm volatile ("mov %0, %%cr3" : : "r"(page_dir));
-
 }
 
 static inline void enable_pse() {

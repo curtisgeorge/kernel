@@ -1,13 +1,14 @@
+#include <stdint.h>
 #include "idt.h"
 #include "asm.h"
 
 struct idt_entry_t idt[256];
 const struct idt_ptr_t idt_ptr = {
                                    .limit = (sizeof(struct idt_entry_t) * 256) - 1,
-                                   .base  = (unsigned int) &idt
+                                   .base  = (uint32_t) &idt
                                  };
 
-void idt_set_gate(unsigned char num, unsigned long base, unsigned short sel, unsigned char flags)
+void idt_set_gate(uint8_t num, uint64_t base, uint16_t sel, uint8_t flags)
 {
 	/* Assign the base values */
 	idt[num].base_lo = (base & 0xFFFF);
@@ -21,7 +22,7 @@ void idt_set_gate(unsigned char num, unsigned long base, unsigned short sel, uns
 
 void init_idt() {
   int i;
-  unsigned int* idt_addr = (unsigned int*) idt;
+  uint32_t* idt_addr = (uint32_t*) idt;
   for(i = 0; i < 256 * 2; i++) {
     idt_addr[i] = 0;
   }

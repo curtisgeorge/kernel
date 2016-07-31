@@ -1,13 +1,14 @@
+#include <stdint.h>
 #include "video.h"
 
-static const unsigned short VIDEO_NUM_COLUMS = 80; 
-static const unsigned short VIDEO_NUM_ROWS = 25; 
-static unsigned short video_xpos = 0;
-static unsigned short video_ypos = 0;
-static volatile unsigned char* video_ptr;
+static const uint16_t VIDEO_NUM_COLUMS = 80; 
+static const uint16_t VIDEO_NUM_ROWS = 25; 
+static uint16_t video_xpos = 0;
+static uint16_t video_ypos = 0;
+static volatile uint8_t* video_ptr;
 
 void init_video() {
-  video_ptr = (unsigned char*) 0xB8000;
+  video_ptr = (uint8_t*) 0xB8000;
   cls();
 }
 
