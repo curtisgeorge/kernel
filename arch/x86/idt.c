@@ -10,20 +10,20 @@ const struct idt_ptr_t idt_ptr = {
 
 void idt_set_gate(uint8_t num, uint64_t base, uint16_t sel, uint8_t flags)
 {
-	/* Assign the base values */
-	idt[num].base_lo = (base & 0xFFFF);
-	idt[num].base_hi = (base >> 16) & 0xFFFF;
+  /* Assign the base values */
+  idt[num].base_lo = (base & 0xFFFF);
+  idt[num].base_hi = (base >> 16) & 0xFFFF;
 
-	/* Set the other fields */
-	idt[num].sel = sel;
-	idt[num].always0 = 0;
-	idt[num].flags = flags;
+  /* Set the other fields */
+  idt[num].sel = sel;
+  idt[num].always0 = 0;
+  idt[num].flags = flags;
 }
 
 void init_idt() {
   int i;
-  uint32_t* idt_addr = (uint32_t*) idt;
-  for(i = 0; i < 256 * 2; i++) {
+  uint64_t* idt_addr = (uint64_t*) idt;
+  for(i = 0; i < 256; i++) {
     idt_addr[i] = 0;
   }
 
