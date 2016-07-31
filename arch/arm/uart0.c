@@ -1,3 +1,5 @@
+#include <stdint.h>
+
 volatile uint32_t * const UART0DR = (uint32_t *)0x101f1000;
  
 void uart0_puts(const char *s) {

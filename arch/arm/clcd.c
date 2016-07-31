@@ -1,3 +1,4 @@
+#include <stdint.h>
 #include "clcd.h"
 
 static const uint32_t H_SIZE = 320;
