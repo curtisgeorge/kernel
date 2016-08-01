@@ -8,7 +8,7 @@ QEMU=qemu-system-i386 -enable-kvm -m 2 -kernel kernel
 else ifeq ($(ARCH),arm)
 CC=arm-none-eabi-gcc
 CFLAGS=-mcpu=arm1176jzf-s
-QEMU=qemu-system-arm -M versatilepb -cpu arm1176 -m 3 -serial stdio -kernel kernel
+QEMU=qemu-system-arm -M versatilepb -cpu arm1176 -m 2 -serial stdio -kernel kernel
 endif
 CFLAGS+=-O2 -ffreestanding -Wall -Iinclude
 ASFLAGS=$(CFLAGS)
@@ -21,7 +21,7 @@ include $(ARCHDIR)/makefile.conf
 
 kernel: $(OBJS)
 
-qemu:
+qemu: kernel
 	$(QEMU)
 
 clean:
