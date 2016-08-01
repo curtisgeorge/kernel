@@ -19,7 +19,7 @@ extern void _irq12();
 extern void _irq13();
 extern void _irq14();
 extern void _irq15();
-extern void idt_set_gate(uint8_t num, uint64_t base, uint16_t sel, uint8_t flags);
+extern void idt_set_gate(uint8_t num, uint32_t base, uint16_t sel, uint8_t flags);
 
 void remap_irqs() {
   outb(0x20, 0x11);

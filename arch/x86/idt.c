@@ -8,7 +8,7 @@ const struct idt_ptr_t idt_ptr = {
                                    .base  = (uint32_t) &idt
                                  };
 
-void idt_set_gate(uint8_t num, uint64_t base, uint16_t sel, uint8_t flags)
+void idt_set_gate(uint8_t num, uint32_t base, uint16_t sel, uint8_t flags)
 {
   /* Assign the base values */
   idt[num].base_lo = (base & 0xFFFF);
