@@ -10,4 +10,5 @@ void handle_syscall() {
 }
 
 void dispatch_interrupts() {
+  printk("Unknown interrupt");
 }

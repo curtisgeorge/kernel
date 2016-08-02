@@ -45,7 +45,8 @@ void remap_irqs() {
   // that the divisor must be small enough to fit into 16-bits. 
   uint32_t divisor = 1193180 / frequency; 
   // Send the command byte. 
-  outb(0x43, 0x36); // Divisor has to be sent byte-wise, so split here into upper/lower bytes.
+  outb(0x43, 0x36);
+  // Divisor has to be sent byte-wise, so split here into upper/lower bytes.
   uint8_t l = (uint8_t)(divisor & 0xFF);
   uint8_t h = (uint8_t)( (divisor>>8) & 0xFF );
   // Send the frequency divisor.
@@ -78,7 +79,7 @@ void irq_handler(struct regs* r)
   }
   outb(0x20, 0x20);
   if(r->int_no == 32) {
-    printk("tick");
+    //printk("tick");
   }
   else if (r->int_no == 33) {
     uint8_t status = inb(0x64);

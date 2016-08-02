@@ -34,7 +34,7 @@ extern void _isr28();
 extern void _isr29();
 extern void _isr30();
 extern void _isr31();
-extern void _isr127();
+extern void _isr128();
 extern void idt_set_gate(unsigned char num, unsigned long base, unsigned short sel, unsigned char flags);
 
 void init_isrs() {
@@ -70,7 +70,7 @@ void init_isrs() {
   idt_set_gate(29, (unsigned)_isr29, 0x08, 0x8E);
   idt_set_gate(30, (unsigned)_isr30, 0x08, 0x8E);
   idt_set_gate(31, (unsigned)_isr31, 0x08, 0x8E);
-  idt_set_gate(127, (unsigned)_isr127, 0x08, 0x8E | 0x60);
+  idt_set_gate(128, (unsigned)_isr128, 0x08, 0x8E | 0x60);
 }
 
 static const char* exception_messages[] = 
@@ -111,12 +111,12 @@ static const char* exception_messages[] =
 
 void fault_handler(struct regs* r) {
   if(r->int_no < 32) {
-    printk(exception_messages[r->int_no]);
     cli();
+    printk(exception_messages[r->int_no]);
     hlt();
   }
-  else if(r->int_no == 127) {
-    printk("syscall");
+  else if(r->int_no == 128) {
+    printk((const char*) r->ebx);
   }
   else {
     printk("Unknown interrupt");
