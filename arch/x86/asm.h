@@ -17,7 +17,7 @@ static inline void hlt() {
   asm volatile ( "hlt" );
 }
 
-static inline void lgdt(const struct gdt_ptr_t* gdt_ptr) {
+static inline void lgdt(const gdt_ptr_t* gdt_ptr) {
   asm volatile ( "lgdt %0" : : "m" (*gdt_ptr) );
 }
 
@@ -32,7 +32,7 @@ static inline void reset_segment_regs() {
                 flush:" : : : "%eax" );
 }
 
-static inline void lidt(const struct idt_ptr_t* idt_ptr) {
+static inline void lidt(const idt_ptr_t* idt_ptr) {
   asm volatile ( "lidt %0" : : "m" (*idt_ptr) );
 }
 

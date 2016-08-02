@@ -109,7 +109,7 @@ static const char* exception_messages[] =
 	"Reserved"
 };
 
-void fault_handler(struct regs* r) {
+void fault_handler(regs* r) {
   if(r->int_no < 32) {
     cli();
     printk(exception_messages[r->int_no]);

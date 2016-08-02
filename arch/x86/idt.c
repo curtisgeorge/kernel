@@ -2,11 +2,11 @@
 #include "idt.h"
 #include "asm.h"
 
-struct idt_entry_t idt[256];
-const struct idt_ptr_t idt_ptr = {
-                                   .limit = (sizeof(struct idt_entry_t) * 256) - 1,
-                                   .base  = (uint32_t) &idt
-                                 };
+idt_entry_t idt[256];
+const idt_ptr_t idt_ptr = {
+                            .limit = (sizeof(idt_entry_t) * 256) - 1,
+                            .base  = (uint32_t) &idt
+                          };
 
 void idt_set_gate(uint8_t num, uint32_t base, uint16_t sel, uint8_t flags)
 {
