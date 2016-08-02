@@ -22,14 +22,14 @@ static inline void lgdt(const gdt_ptr_t* gdt_ptr) {
 }
 
 static inline void reset_segment_regs() {
-  asm volatile("movl $0x10, %%eax\n \
-                movl %%eax, %%ds\n \
-                movl %%eax, %%es\n \
-                movl %%eax, %%fs\n \
-                movl %%eax, %%gs\n \
-                movl %%eax, %%ss\n \
-                ljmp $(0x08), $flush\n \
-                flush:" : : : "%eax" );
+  uint32_t val = 0x10;
+  asm volatile("movl %0, %%ds\n"
+               "movl %0, %%es\n"
+               "movl %0, %%fs\n"
+               "movl %0, %%gs\n"
+               "movl %0, %%ss\n"
+               "ljmp $(0x08), $1f\n"
+               "1:" : : "r"(val));
 }
 
 static inline void lidt(const idt_ptr_t* idt_ptr) {
@@ -44,9 +44,9 @@ static inline void outb(uint16_t port, uint8_t val)
 
 static inline uint8_t inb(uint16_t port)
 {
-    uint8_t ret;
-    asm volatile ( "inb %1, %0" : "=a"(ret) : "Nd"(port) );
-    return ret;
+  uint8_t ret;
+  asm volatile ( "inb %1, %0" : "=a"(ret) : "Nd"(port) );
+  return ret;
 }
 
 static inline void load_page_dir(uint32_t page_dir) {
@@ -59,16 +59,26 @@ static inline void enable_pse() {
                  mov %%ecx, %%cr4" : : :  "%ecx" );
 }
 
+static inline uint32_t get_cr0() {
+  uint32_t cr0;
+  asm volatile ("mov %%cr0, %0" : "=r"(cr0));
+  return cr0;
+}
+
+static inline void set_cr0(uint32_t cr0) {
+  asm volatile ("mov %0, %%cr0" : : "r"(cr0));
+}
+
 static inline void enable_paging() {
-  asm volatile ("mov %%cr0, %%ecx\n \
-                 or $0x80000000, %%ecx\n \
-                 mov %%ecx, %%cr0" : : : "%ecx");
+  uint32_t cr0 = get_cr0();
+  cr0 |= 0x80000000;
+  set_cr0(cr0);
 }
 
 static inline void enable_wp() {
-  asm volatile ("mov %%cr0, %%ecx\n \
-                 or $0x00010000, %%ecx\n \
-                 mov %%ecx, %%cr0" : : : "%ecx");
+  uint32_t cr0 = get_cr0();
+  cr0 |= 0x00010000;
+  set_cr0(cr0);
 }
 
 #endif
