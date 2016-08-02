@@ -63,7 +63,12 @@ static inline void enable_paging() {
   asm volatile ("mov %%cr0, %%ecx\n \
                  or $0x80000000, %%ecx\n \
                  mov %%ecx, %%cr0" : : : "%ecx");
+}
 
+static inline void enable_wp() {
+  asm volatile ("mov %%cr0, %%ecx\n \
+                 or $0x00010000, %%ecx\n \
+                 mov %%ecx, %%cr0" : : : "%ecx");
 }
 
 #endif

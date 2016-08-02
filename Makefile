@@ -12,7 +12,7 @@ QEMU=qemu-system-arm -M versatilepb -cpu arm1176 -m 2 -serial stdio -kernel kern
 endif
 CFLAGS+=-O2 -ffreestanding -Wall -Iinclude
 ASFLAGS=$(CFLAGS)
-LDFLAGS=-nostdlib -Wl,--build-id=none -T $(ARCHDIR)/linker.ld
+LDFLAGS=-nostdlib -Wl,--build-id=none -T $(ARCHDIR)/linker.ld -lgcc
 OBJS=kernel.o
 
 all: kernel
