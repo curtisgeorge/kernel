@@ -7,7 +7,7 @@ QEMU=qemu-system-i386 -enable-kvm -m 2 -kernel kernel
 else ifeq ($(ARCH),arm)
 CC=arm-none-eabi-g++
 CFLAGS=-mcpu=arm1176jzf-s
-QEMU=qemu-system-arm -M versatilepb -cpu arm1176 -m 3 -serial stdio -kernel kernel
+QEMU=qemu-system-arm -M versatilepb -cpu arm1176 -m 2 -serial stdio -kernel kernel
 endif
 CXX=$(CC)
 CFLAGS+=-ffreestanding -nostdlib -Wall -Iinclude

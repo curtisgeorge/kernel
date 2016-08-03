@@ -18,9 +18,7 @@ cd gcc-5.3.0
 mkdir build
 cd build
 ../configure --target=$TARGET --prefix="$PREFIX" --disable-nls --enable-languages=c,c++ --without-headers
-#make all-gcc
-#make all-target-libgcc
-#make install-gcc
-#make install-target-libgcc
-make all-host
-make install-host
+make all-gcc
+make all-target-libgcc
+make install-gcc
+make install-target-libgcc
