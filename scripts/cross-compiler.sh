@@ -1,5 +1,6 @@
 #!/bin/bash
 export PREFIX="$HOME/usr/local"
+# TARGET should be one of i386-elf, i686-elf, x86_64-elf, arm-none-eabi, arm-elf
 export TARGET=arm-none-eabi
 export PATH="$PREFIX/bin:$PATH"
 
