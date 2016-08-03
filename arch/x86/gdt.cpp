@@ -33,6 +33,18 @@ const gdt_ptr_t gdt_ptr = {
                             .base = (uint32_t) &gdt
                           };
 
+static void gdt_flush() {
+  asm volatile("lgdt %0" : : "m" (gdt_ptr));
+  asm volatile("movl $0x10, %eax\n \
+                movl %eax, %ds\n \
+                movl %eax, %es\n \
+                movl %eax, %fs\n \
+                movl %eax, %gs\n \
+                movl %eax, %ss\n \
+                ljmp $(0x08), $flush\n \
+                flush:");
+}
+
 void init_gdt() {
   gdt_flush();
 }

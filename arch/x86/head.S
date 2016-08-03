@@ -10,6 +10,7 @@ _start:
   cli
   mov $stack_top, %esp
   call kmain
+  cli
 loop:
   hlt
   jmp loop
