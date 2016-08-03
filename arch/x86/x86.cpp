@@ -1,4 +1,5 @@
 #include <arch.h>
+#include "asm.h"
 #include "video.h"
 #include "gdt.h"
 #include "idt.h"
@@ -11,5 +12,5 @@ void init_arch() {
   init_idt();
   remap_irqs();
   init_isrs();
-  asm volatile("sti");
+  sti();
 }
