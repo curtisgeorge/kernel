@@ -3,11 +3,11 @@ ARCHDIR=arch/$(ARCH)
 
 ifeq ($(ARCH),x86)
 CC=i386-elf-g++
-QEMU=qemu-system-i386 -m 2 -kernel kernel
+QEMU=qemu-system-i386 -enable-kvm -m 2 -kernel kernel
 else ifeq ($(ARCH),arm)
 CC=arm-none-eabi-g++
-CFLAGS=-mcpu=arm926ej-s
-QEMU=qemu-system-arm -m 2 -M versatilepb -cpu arm1176 -nographic -kernel kernel
+CFLAGS=-mcpu=arm1176jzf-s
+QEMU=qemu-system-arm -M versatilepb -cpu arm926 -m 2 -nographic -kernel kernel
 endif
 CXX=$(CC)
 CFLAGS+=-ffreestanding -nostdlib -Wall -Iinclude

@@ -3,11 +3,13 @@
 #include "gdt.h"
 #include "idt.h"
 #include "irq.h"
+#include "isrs.h"
 
 void init_arch() {
   init_video();
   init_gdt();
-  remap_irqs();
   init_idt();
+  remap_irqs();
+  init_isrs();
   asm volatile("sti");
 }
