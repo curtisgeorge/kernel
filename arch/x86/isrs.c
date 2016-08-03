@@ -1,8 +1,8 @@
 #include <printk.h>
 #include <asm/cli.h>
 #include <asm/hlt.h>
-#include "irq.h"
-#include "asm.h"
+#include <irq.h>
+#include <asm.h>
 
 extern void _isr0();
 extern void _isr1();

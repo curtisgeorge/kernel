@@ -2,12 +2,7 @@
 #define ASM_H
 
 #include <stdint.h>
-#include "gdt.h"
 #include "idt.h"
-
-static inline void lgdt(const gdt_ptr_t* gdt_ptr) {
-  asm volatile ( "lgdt %0" : : "m" (*gdt_ptr) );
-}
 
 static inline void reset_segment_regs() {
   uint32_t val = 0x10;
@@ -18,10 +13,6 @@ static inline void reset_segment_regs() {
                "movl %0, %%ss\n"
                "ljmp $(0x08), $1f\n"
                "1:" : : "r"(val));
-}
-
-static inline void lidt(const idt_ptr_t* idt_ptr) {
-  asm volatile ( "lidt %0" : : "m" (*idt_ptr) );
 }
 
 static inline void outb(uint16_t port, uint8_t val)

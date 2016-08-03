@@ -3,7 +3,10 @@
 
 #include <stdint.h>
 
-static inline void interrupt(uint32_t int_num) {
+/**
+ * Inline functon that executes an interrupt
+ */
+static inline void interrupt(uint16_t int_num) {
   asm volatile("int %0" : : "N"(int_num));
 }
 

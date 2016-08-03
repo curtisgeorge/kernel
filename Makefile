@@ -10,7 +10,7 @@ CC=arm-none-eabi-gcc
 CFLAGS=-mcpu=arm1176jzf-s
 QEMU=qemu-system-arm -M versatilepb -cpu arm1176 -m 2 -serial stdio -kernel kernel
 endif
-CFLAGS+=-O2 -ffreestanding -Wall -Iinclude
+CFLAGS+=-O2 -ffreestanding -Wall -Iinclude -I$(ARCHDIR)/include
 ASFLAGS=$(CFLAGS)
 LDFLAGS=-nostdlib -Wl,--build-id=none -T $(ARCHDIR)/linker.ld -lgcc
 OBJS=kernel.o

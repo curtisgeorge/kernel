@@ -1,6 +1,7 @@
 #include <stdint.h>
-#include "idt.h"
-#include "asm.h"
+#include <idt.h>
+#include <asm/lidt.h>
+#include <asm.h>
 
 idt_entry_t idt[256];
 const idt_ptr_t idt_ptr = {

@@ -1,6 +1,7 @@
 #include <stdint.h>
-#include "gdt.h"
-#include "asm.h"
+#include <gdt.h>
+#include <asm.h>
+#include <asm/lgdt.h>
 
 const gdt_entry_t gdt[5] = {
                              {
