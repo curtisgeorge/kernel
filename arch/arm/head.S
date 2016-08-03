@@ -5,27 +5,30 @@ _start:
   // Call the kernel
   BL kmain
   // If we return from kmain pause the CPU
+loop:
   MOV R0, #0
   MCR p15, 0, r0, c7, c0, 4
   // Infinite loop
-  B .
+  B loop
 
 .globl interrupt_table_start
 .globl interrupt_table_end
 interrupt_table_start:
-	nop
-	subs pc, lr, #4
+	b .
+	b .
 	ldr pc, syscall_entry_address
-	subs pc, lr, #4
-	subs pc, lr, #4
-	subs pc, lr, #4
+	b .
+	b .
+	b .
 	ldr pc, irq_entry_address
+        b .
+        
 	syscall_entry_address: .word syscall_entry
 	irq_entry_address: .word irq_entry
 interrupt_table_end:
 
 syscall_entry:
-	bl handle_syscall
+	b handle_syscall
 
 irq_entry:
-	bl dispatch_interrupts
+	b dispatch_interrupts
