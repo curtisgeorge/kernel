@@ -35,7 +35,7 @@ extern "C" void _isr29();
 extern "C" void _isr30();
 extern "C" void _isr31();
 extern "C" void _isr127();
-extern void idt_set_gate(unsigned char num, unsigned long base, unsigned short sel, unsigned char flags);
+extern void idt_set_gate(uint8_t num, uint32_t base, uint16_t sel, uint8_t flags);
 
 void init_isrs() {
   idt_set_gate(0, (unsigned)_isr0, 0x08, 0x8E);
