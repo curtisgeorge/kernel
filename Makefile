@@ -12,9 +12,9 @@ ARCHDIR=arch/$(ARCH)
 
 LDFLAGS+=-T $(ARCHDIR)/linker.ld
 
-include $(ARCHDIR)/makefile.conf
-
 all: kernel
+
+include $(ARCHDIR)/makefile.conf
 
 kernel: $(OBJS)
 
