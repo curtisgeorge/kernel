@@ -5,18 +5,6 @@
 #include "gdt.h"
 #include "idt.h"
 
-static inline void sti() {
-  asm volatile ( "sti" );
-}
-
-static inline void cli() {
-  asm volatile ( "cli" );
-}
-
-static inline void hlt() {
-  asm volatile ( "hlt" );
-}
-
 static inline void lgdt(const gdt_ptr_t* gdt_ptr) {
   asm volatile ( "lgdt %0" : : "m" (*gdt_ptr) );
 }

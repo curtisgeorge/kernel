@@ -1,4 +1,6 @@
 #include <printk.h>
+#include <asm/cli.h>
+#include <asm/hlt.h>
 #include "irq.h"
 #include "asm.h"
 
@@ -116,7 +118,9 @@ void fault_handler(regs* r) {
     hlt();
   }
   else if(r->int_no == 128) {
-    printk((const char*) r->ebx);
+    if(r->eax == 0x04) {
+      printk((const char*) r->ebx);
+    }
   }
   else {
     printk("Unknown interrupt");
