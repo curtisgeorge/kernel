@@ -17,7 +17,7 @@ struct gdt_entry_t {
   uint8_t base_high;
 } __attribute__((packed));
 
-extern gdt_entry_t gdt[3];
+extern const gdt_entry_t gdt[3];
 extern const gdt_ptr_t gdt_ptr;
 
 void init_gdt();

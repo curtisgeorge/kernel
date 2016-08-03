@@ -1,7 +1,7 @@
 #include "gdt.h"
 #include "asm.h"
 
-gdt_entry_t gdt[3] = {
+const gdt_entry_t gdt[3] = {
                        {
                          .limit_low = 0x0000,
                          .base_low = 0x0000,
@@ -34,15 +34,8 @@ const gdt_ptr_t gdt_ptr = {
                           };
 
 static void gdt_flush() {
-  asm volatile("lgdt %0" : : "m" (gdt_ptr));
-  asm volatile("movl $0x10, %eax\n \
-                movl %eax, %ds\n \
-                movl %eax, %es\n \
-                movl %eax, %fs\n \
-                movl %eax, %gs\n \
-                movl %eax, %ss\n \
-                ljmp $(0x08), $flush\n \
-                flush:");
+  lgdt(&gdt_ptr);
+  reset_segment_regs();
 }
 
 void init_gdt() {
