@@ -3,7 +3,7 @@ CXX=$(CC)
 CFLAGS=-O2 -ffreestanding -nostdlib -Wall -Iinclude
 CXXFLAGS=$(CFLAGS)
 ASFLAGS=$(CFLAGS)
-LDFLAGS=$(CFLAGS)
+LDFLAGS=$(CFLAGS) -Wl,--build-id=none
 OBJS=kernel.o
 QEMU=qemu-system-i386 -m 2 -kernel kernel
 

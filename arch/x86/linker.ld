@@ -4,8 +4,9 @@ SECTIONS
   . = 1M;
   .text :
   {
+    *(.multiboot)
     *(.text)
-    *(.rotext)
+    *(.rodata*)
     . = ALIGN(4K);
   }
 
