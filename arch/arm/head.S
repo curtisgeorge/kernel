@@ -18,17 +18,21 @@ interrupt_table_start:
 	b .
 	ldr pc, syscall_entry_address
 	b .
-	b .
+	ldr pc, data_abort_entry_address
 	b .
 	ldr pc, irq_entry_address
         b .
         
 	syscall_entry_address: .word syscall_entry
+        data_abort_entry_address: .word data_abort_entry
 	irq_entry_address: .word irq_entry
 interrupt_table_end:
 
 syscall_entry:
 	b handle_syscall
+
+data_abort_entry:
+        b handle_abort
 
 irq_entry:
 	b dispatch_interrupts
