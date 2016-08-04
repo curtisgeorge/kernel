@@ -2,6 +2,7 @@
 #include "uart0.h"
 #include "clcd.h"
 #include "timer.h"
+#include "paging.h"
 #include "asm.h"
 
 void init_arch() {
@@ -9,5 +10,6 @@ void init_arch() {
   init_clcd();
   init_interrupts();
   init_timer();
+  init_paging();
   enable_irq();
 }
