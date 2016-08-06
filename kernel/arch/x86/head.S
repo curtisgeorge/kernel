@@ -14,7 +14,7 @@ loop:
   hlt
   jmp loop
 
-.bss
+.section .stack, "aw", @nobits
 stack_bottom:
 .skip 8192
 stack_top:

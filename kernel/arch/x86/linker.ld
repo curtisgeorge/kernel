@@ -18,6 +18,7 @@ SECTIONS
 
   .bss :
   {
+    *(.stack)
     *(.bss)
     . = ALIGN(4K);
   }
