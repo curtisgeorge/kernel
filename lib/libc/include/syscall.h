@@ -1,5 +1,4 @@
-#ifndef _SYSCALL_H_
-#define _SYSCALL_H_
+#pragma once
 
 #include <sys/syscall.h>
 
@@ -10,5 +9,3 @@ static inline int syscall_exit(int status) {
 static inline int syscall_print(const char* s) {
   return syscall1(2, (unsigned int) s);
 }
-
-#endif

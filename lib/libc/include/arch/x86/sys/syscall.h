@@ -1,8 +1,5 @@
-#ifndef _SYS_SYSCALL_H_
-#define _SYS_SYSCALL_H_
+#pragma once
 
 static inline int syscall1(int syscall_no, unsigned int arg1) {
-  asm volatile ("mov %0, %%eax; mov %1, %%ebx; int $0x80" : : "r"(syscall_no), "r"(arg1) : "%eax", "%ebx");
+  asm volatile ("int $0x80" : : "a"(syscall_no), "b"(arg1));
 }
-
-#endif

@@ -1,6 +1,3 @@
-#ifndef _STDIO_H_
-#define _STDIO_H_
+#pragma once
 
 int printf(const char*, ...);
-
-#endif

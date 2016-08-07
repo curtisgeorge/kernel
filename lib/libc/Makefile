@@ -1,6 +1,14 @@
+ARCH?=x86
+ARCHDIR=arch/$(ARCH)
+
+ifeq ($(ARCH),x86)
 CC=i386-elf-gcc
 AR=i386-elf-ar
-CFLAGS=-O2 -I../../include -Iinclude -Iinclude/arch/x86
+else ifeq ($(ARCH),arm)
+CC=arm-none-eabi-gcc
+AR=arm-none-eabi-ar
+endif
+CFLAGS=-O2 -I../../include -Iinclude -Iinclude/$(ARCHDIR)
 OBJS=_exit.o printf.o
 
 all: libc.a

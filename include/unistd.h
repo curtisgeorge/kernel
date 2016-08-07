@@ -1,6 +1,3 @@
-#ifndef _UNISTD_H_
-#define _UNISTD_H_
+#pragma once
 
 void _exit(int status) __attribute__((noreturn));
-
-#endif
