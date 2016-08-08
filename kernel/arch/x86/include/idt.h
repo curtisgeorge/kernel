@@ -1,5 +1,4 @@
-#ifndef IDT_H
-#define IDT_H
+#pragma once
 
 #include <stdint.h>
 
@@ -17,5 +16,3 @@ typedef struct {
 } __attribute__((packed)) idt_ptr_t;
 
 void init_idt();
-
-#endif

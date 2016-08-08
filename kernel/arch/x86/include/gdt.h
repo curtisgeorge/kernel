@@ -1,5 +1,4 @@
-#ifndef GDT_H
-#define GDT_H
+#pragma once
 
 #include <stdint.h>
 
@@ -18,5 +17,3 @@ typedef struct {
 } __attribute__((packed)) gdt_entry_t;
 
 void init_gdt();
-
-#endif

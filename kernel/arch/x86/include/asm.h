@@ -1,5 +1,4 @@
-#ifndef ASM_H
-#define ASM_H
+#pragma once
 
 #include <stdint.h>
 #include "idt.h"
@@ -59,5 +58,3 @@ static inline void enable_wp() {
   cr0 |= 0x00010000;
   set_cr0(cr0);
 }
-
-#endif

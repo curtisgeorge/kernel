@@ -1,6 +1,3 @@
-#ifndef PRINTK_H
-#define PRINTK_H
+#pragma once
 
 void printk(const char*);
-
-#endif

@@ -1,8 +1,5 @@
-#ifndef VIDEO_H
-#define VIDEO_H
+#pragma once
 
 void init_video();
 void cls();
 void video_putchar(const char);
-
-#endif

@@ -1,6 +1,3 @@
-#ifndef PAGING_H
-#define PAGING_H
+#pragma once
 
 void init_paging();
-
-#endif

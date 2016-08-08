@@ -1,6 +1,3 @@
-#ifndef ARCH_H
-#define ARCH_H
+#pragma once
 
 void init_arch();
-
-#endif

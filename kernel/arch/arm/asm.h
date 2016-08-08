@@ -1,5 +1,4 @@
-#ifndef ASM_H
-#define ASM_H
+#pragma once
 
 static inline void copy_interrupt_table() {
   asm volatile ("mov r0, #0x0\n \
@@ -73,5 +72,3 @@ static inline void disable_irq_and_fiq() {
                  msr cpsr_c, r1");
 #endif
 }
-
-#endif

@@ -1,5 +1,4 @@
-#ifndef IRQ_H
-#define IRQ_H
+#pragma once
 
 #include <stdint.h>
 
@@ -11,5 +10,3 @@ typedef struct {
 } regs;
 
 void remap_irqs();
-
-#endif

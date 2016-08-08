@@ -1,5 +1,4 @@
-#ifndef PAGING_H
-#define PAGING_H
+#pragma once
 
 #include <stdint.h>
 
@@ -9,5 +8,3 @@ typedef struct {
 } __attribute__((packed)) page_dir_entry_t;
 
 void init_paging();
-
-#endif

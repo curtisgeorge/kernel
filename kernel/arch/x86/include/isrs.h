@@ -1,6 +1,3 @@
-#ifndef ISRS_H
-#define ISRS_H
+#pragma once
 
 void init_isrs();
-
-#endif
