@@ -6,16 +6,11 @@
 
 void init_interrupts() {
   copy_interrupt_table();
-  uint32_t cpsr;
-  asm volatile("mrs %0, cpsr" : "=r"(cpsr));
-  cpsr &= 0xFFFFFFE0;
-  cpsr |= 0x12;
-  asm volatile("msr cpsr_c, %0" : : "r"(cpsr));
+  asm volatile("cps #0x12");
   asm volatile("ldr sp, =irq_stack_top");
-  asm volatile("mrs %0, cpsr" : "=r"(cpsr));
-  cpsr &= 0xFFFFFFE0;
-  cpsr |= 0x13;
-  asm volatile("msr cpsr_c, %0" : : "r"(cpsr));
+  asm volatile("cps #0x17");
+  asm volatile("ldr sp, =abort_stack_top");
+  asm volatile("cps #0x13");
 }
 
 void __attribute__((interrupt("ABORT"))) handle_abort() {
