@@ -8,8 +8,8 @@ else ifeq ($(ARCH),arm)
 CC=arm-none-eabi-gcc
 AR=arm-none-eabi-ar
 endif
-CFLAGS=-O2 -I../../include -Iinclude -Iinclude/$(ARCHDIR)
-OBJS=_exit.o printf.o
+CFLAGS=-O2 -Wall -I../../include -Iinclude -Iinclude/$(ARCHDIR)
+OBJS=_exit.o execve.o fork.o getchar.o gets.o printf.o
 
 all: libc.a
 
