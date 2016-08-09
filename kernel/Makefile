@@ -13,11 +13,10 @@ endif
 CFLAGS+=-O2 -ffreestanding -Wall -Iinclude -I$(ARCHDIR)/include
 ASFLAGS=$(CFLAGS)
 LDFLAGS=-nostdlib -Wl,--build-id=none -T $(ARCHDIR)/linker.ld -lgcc
-OBJS=kernel.o
+SRCS := $(wildcard *.c $(ARCHDIR)/*.c $(ARCHDIR)/*.S)
+OBJS := $(patsubst %.c, %.o, $(patsubst %.S, %.o, $(SRCS)))
 
 all: kernel
-
-include $(ARCHDIR)/makefile.conf
 
 kernel: $(OBJS)
 
