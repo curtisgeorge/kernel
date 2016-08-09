@@ -5,6 +5,5 @@
 void kmain() {
   init_arch();
   printk("Hello world");
-  const char* s = "Test";
-  syscall(s);
+  syscall_print("Test");
 }

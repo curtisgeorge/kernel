@@ -1,6 +1,23 @@
 #pragma once
 
-#include <stdint.h>
+#include <sys/syscall.h>
 
-void syscall(const char*);
-static const uint8_t SYSCALL_INT = 0x80;
+static inline int syscall_exit(int status) {
+  return syscall1(1, status);
+}
+
+static inline int syscall_fork() {
+  return syscall0(2);
+}
+
+static inline int syscall_getchar() {
+  return syscall0(3);
+}
+
+static inline int syscall_print(const char* s) {
+  return syscall1(4, (unsigned int) s);
+}
+
+static inline int syscall_execve(const char* filename, char *const argv[], char *const envp[]) {
+  return syscall3(11, (unsigned int) filename, (unsigned int) argv, (unsigned int) envp);
+}

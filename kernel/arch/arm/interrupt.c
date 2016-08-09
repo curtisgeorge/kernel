@@ -23,11 +23,9 @@ void __attribute__((interrupt("SWI"))) handle_syscall() {
   asm volatile("ldr %0, [lr, #-4]" : "=r"(int_no));
   int_no &= 0x00FFFFFF;
   if(int_no == 0x80) {
-    uint32_t syscall_no;
-    asm volatile("mov %0, r0" : "=r"(syscall_no));
+    register uint32_t syscall_no asm("r0");
     if(syscall_no == 0x4) {
-      const char* s;
-      asm volatile("mov %0, r1" : "=r"(s));
+      register const char* s asm("r1");
       printk(s);
     }
   }
