@@ -35,4 +35,9 @@ abort_entry:
         b handle_abort
 
 irq_entry:
-	b dispatch_interrupts
+        sub r14, r14, #4
+        push {r0-r12, lr}
+        mov r0, sp
+	bl dispatch_interrupts
+        pop {r0-r12, lr}
+        movs pc, lr

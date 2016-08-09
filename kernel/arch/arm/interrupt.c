@@ -36,7 +36,11 @@ void __attribute__((interrupt("SWI"))) handle_syscall() {
   }
 }
 
-void __attribute__((interrupt("IRQ"))) dispatch_interrupts() {
+struct regs {
+  uint32_t r0, r1, r2, r3, r4, r5, r6, r7, r8, r9, r10, r11, r12, lr;
+};
+
+void dispatch_interrupts(struct regs* r) {
   uint32_t status = get_status();
   if(status & (1u << 5)) {
     //printk("tick");
