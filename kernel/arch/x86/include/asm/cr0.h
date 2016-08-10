@@ -32,13 +32,9 @@ static inline void set_cr0(uint32_t cr0) {
 }
 
 static inline void set_cr0_flags(uint32_t flags) {
-  uint32_t cr0 = get_cr0();
-  cr0 |= flags;
-  set_cr0(cr0);
+  set_cr0(get_cr0() | flags);
 }
 
 static inline void clear_cr0_flags(uint32_t flags) {
-  uint32_t cr0 = get_cr0();
-  cr0 &= ~flags;
-  set_cr0(cr0);
+  set_cr0(get_cr0() & ~flags);
 }
