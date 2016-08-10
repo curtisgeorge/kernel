@@ -3,7 +3,7 @@
 #include "clcd.h"
 #include "timer.h"
 #include "paging.h"
-#include "asm.h"
+#include <asm/cpsr.h>
 
 void init_arch() {
   uart0_init();

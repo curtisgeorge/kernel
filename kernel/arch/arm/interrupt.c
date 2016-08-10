@@ -1,16 +1,19 @@
 #include <printk.h>
-#include "asm.h"
 #include "pic.h"
 #include "timer.h"
 #include "uart0.h"
+#include <asm/copy_interrupt_table.h>
+#include <asm/cpsr.h>
+#include <asm/stack.h>
+#include <asm/swi.h>
 
 void init_interrupts() {
   copy_interrupt_table();
-  asm volatile("cps #0x12");
-  asm volatile("ldr sp, =irq_stack_top");
-  asm volatile("cps #0x17");
-  asm volatile("ldr sp, =abort_stack_top");
-  asm volatile("cps #0x13");
+  set_mode(MODE_IRQ);
+  set_irq_stack();
+  set_mode(MODE_ABT);
+  set_abort_stack();
+  set_mode(MODE_SVC);
 }
 
 void __attribute__((interrupt("ABORT"))) handle_abort() {
@@ -19,10 +22,8 @@ void __attribute__((interrupt("ABORT"))) handle_abort() {
 }
 
 void __attribute__((interrupt("SWI"))) handle_syscall() {
-  uint32_t int_no;
-  asm volatile("ldr %0, [lr, #-4]" : "=r"(int_no));
-  int_no &= 0x00FFFFFF;
-  if(int_no == 0x80) {
+  uint32_t swi_no = get_swi_no();
+  if(swi_no == 0x80) {
     register uint32_t syscall_no asm("r0");
     if(syscall_no == 0x4) {
       register const char* s asm("r1");
