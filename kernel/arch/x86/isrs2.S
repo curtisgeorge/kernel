@@ -53,8 +53,8 @@ ISR_NOERR 30
 ISR_NOERR 31
 ISR_NOERR 128
 
-.extern fault_handler
-.type fault_handler, @function
+.extern interrupt_handler
+.type interrupt_handler, @function
 
 isr_common:
     /* Push all registers */
@@ -71,9 +71,9 @@ isr_common:
     mov %ax, %fs
     mov %ax, %gs
 
-    /* Call fault handler */
+    /* Call interrupt handler */
     push %esp
-    call fault_handler
+    call interrupt_handler
     add $4, %esp
 
     /* Restore segment registers */

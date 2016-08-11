@@ -6,6 +6,7 @@
 #include <asm/cpsr.h>
 #include <asm/stack.h>
 #include <asm/swi.h>
+#include <syscall_handler.h>
 
 void init_interrupts() {
   copy_interrupt_table();
@@ -21,14 +22,14 @@ void __attribute__((interrupt("ABORT"))) handle_abort() {
   while(1) {}
 }
 
-void __attribute__((interrupt("SWI"))) handle_syscall() {
+void __attribute__((interrupt("SWI"))) swi_handler() {
+  register uint32_t r0 asm("r0");
+  register uint32_t r1 asm("r1");
+  register uint32_t r2 asm("r2");
+  register uint32_t r3 asm("r3");
   uint32_t swi_no = get_swi_no();
   if(swi_no == 0x80) {
-    register uint32_t syscall_no asm("r0");
-    if(syscall_no == 0x4) {
-      register const char* s asm("r1");
-      printk(s);
-    }
+    syscall_handler(r0, r1, r2, r3);
   }
   else {
     printk("Unknown SWI");

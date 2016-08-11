@@ -3,6 +3,7 @@
 #include <asm/hlt.h>
 #include <irq.h>
 #include <asm.h>
+#include <syscall_handler.h>
 
 extern void _isr0();
 extern void _isr1();
@@ -111,16 +112,13 @@ static const char* exception_messages[] =
 	"Reserved"
 };
 
-void fault_handler(regs* r) {
+void interrupt_handler(regs* r) {
   if(r->int_no < 32) {
-    cli();
     printk(exception_messages[r->int_no]);
     hlt();
   }
   else if(r->int_no == 128) {
-    if(r->eax == 0x04) {
-      printk((const char*) r->ebx);
-    }
+    syscall_handler(r->eax, r->ebx, r->ecx, r->edx);
   }
   else {
     printk("Unknown interrupt");
