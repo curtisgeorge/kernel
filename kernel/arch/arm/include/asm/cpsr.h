@@ -19,6 +19,9 @@ static inline void set_cpsr(uint32_t cpsr) {
   asm volatile ("msr cpsr, %0" : : "r"(cpsr));
 }
 
+/*
+ * Sets the mode while maintaining all of the other flags
+ */
 static inline void set_mode(uint32_t mode) {
   set_cpsr((get_cpsr() & 0xFFFFFFE0) | mode);
 }
