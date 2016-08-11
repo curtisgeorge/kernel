@@ -1,7 +1,8 @@
 #include <printk.h>
-#include "irq.h"
-#include "asm.h"
-#include "keyboard_map.h"
+#include <irq.h>
+#include <asm/inb.h>
+#include <asm/outb.h>
+#include <keyboard_map.h>
 
 extern void _irq0();
 extern void _irq1();
