@@ -9,7 +9,7 @@ CC=arm-none-eabi-gcc
 AR=arm-none-eabi-ar
 endif
 CFLAGS=-O2 -Wall -I../../include -I../../kernel/include -I../../kernel/$(ARCHDIR)/include
-SRCS := $(wildcard *.c)
+SRCS := $(wildcard ctype/*.c errno/*.c stdio/*.c stdlib/*.c unistd/*.c)
 OBJS := $(SRCS:%.c=%.o)
 
 all: libc.a

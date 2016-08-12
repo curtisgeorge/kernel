@@ -1,5 +1,6 @@
 #include <stdlib.h>
+#include <unistd.h>
 
 void exit(int status) {
-  while(1) {}
+  _exit(status);
 }
