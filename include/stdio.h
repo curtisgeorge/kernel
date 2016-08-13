@@ -20,3 +20,4 @@ int    getchar();
 char*  gets(char*);
 int    printf(const char*, ...);
 int    putc(int, FILE*);
+int    sprintf(char*, const char*, ...);
