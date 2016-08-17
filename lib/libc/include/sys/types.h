@@ -11,6 +11,7 @@ typedef long int off_t;
 typedef int pid_t;
 typedef int mode_t;
 typedef int ssize_t;
+typedef long suseconds_t;
 typedef long time_t;
 typedef unsigned int u_int;
 typedef unsigned long u_long;
