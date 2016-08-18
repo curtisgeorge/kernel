@@ -5,6 +5,7 @@
 #define SIGINT  2
 #define SIGQUIT 3
 #define	SIGFPE  8
+#define SIGPIPE 13
 #define SIGALRM 14
 #define SIGTERM 15
 #define SIGCHLD 17
