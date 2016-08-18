@@ -13,3 +13,4 @@ char* getenv(const char*);
 void* malloc(size_t);
 void  qsort(void*, size_t, size_t, int (*)(const void*, const void*));
 void* realloc(void*, size_t);
+long long int strtoll (const char*, char**, int);

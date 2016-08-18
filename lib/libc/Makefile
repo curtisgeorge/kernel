@@ -9,7 +9,7 @@ CC=arm-none-eabi-gcc
 AR=arm-none-eabi-ar
 endif
 CFLAGS=-O2 -Wall -Iinclude -I../../kernel/include -I../../kernel/$(ARCHDIR)/include
-SRCS := $(wildcard assert/*.c ctype/*.c errno/*.c stdio/*.c stdlib/*.c string/*.c time/*.c sys/*.c unistd/*.c)
+SRCS := $(wildcard assert/*.c ctype/*.c errno/*.c stdio/*.c stdlib/*.c string/*.c time/*.c sys/stat/*.c sys/times/*.c unistd/*.c)
 OBJS := $(SRCS:%.c=%.o)
 
 all: libc.a

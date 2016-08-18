@@ -23,6 +23,7 @@ pid_t        getpid();
 uid_t        getuid();
 int          isatty(int);
 off_t        lseek(int, off_t, int);
+int          pipe(int [2]);
 ssize_t      read(int, void*, size_t);
 int          setegid(gid_t);
 int          seteuid(uid_t);

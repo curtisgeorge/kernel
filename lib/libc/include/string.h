@@ -9,6 +9,7 @@ void*  memmove(void*, const void*, size_t);
 char*  strchr(const char*, int);
 char*  strcpy(char*, const char*);
 int    strcmp(const char*, const char*);
+char*  strerror(int);
 size_t strlen(const char*);
 char*  strrchr(const char*, int);
 int    strncmp(const char*, const char*, size_t);
