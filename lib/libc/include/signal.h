@@ -50,7 +50,10 @@ struct sigaction {
   void (*sa_sigaction)(int, siginfo_t*, void*)
 };
 
+extern const char *const sys_siglist[];
+
 int  kill(pid_t, int);
+int  raise(int);
 int  sigemptyset(sigset_t*);
 int  sigprocmask(int, const sigset_t*, sigset_t*);
 void (*signal(int, void (*)(int)))(int);

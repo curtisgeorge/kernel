@@ -1,5 +1,7 @@
 #pragma once
 
+#include <sys/types.h>
+
 #define O_RDONLY   00
 #define O_WRONLY   01
 #define O_RDWR     02
@@ -17,5 +19,9 @@
 #define F_GETFL 3
 #define F_SETFL 4
 
+int creat(const char*, mode_t);
 int fcntl(int, int, ...);
 int open(const char*, int, ...);
+int openat(int, const char*, int, ...);
+int posix_fadvise(int, off_t, off_t, int);
+int posix_fallocate(int , off_t, off_t);
