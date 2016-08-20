@@ -1,5 +1,5 @@
 #include <stdio.h>
 
-int vprintf(const char* format, va_list arg) {
-  return 0;
+int vprintf(const char* fmt, va_list ap) {
+  return vfprintf(stdout, fmt, ap);
 }

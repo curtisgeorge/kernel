@@ -15,3 +15,4 @@ char*  strrchr(const char*, int);
 int    strncmp(const char*, const char*, size_t);
 char*  strncpy(char*, const char*, size_t);
 char*  strstr(const char*, const char*);
+char*  strtok(char*, const char*);
