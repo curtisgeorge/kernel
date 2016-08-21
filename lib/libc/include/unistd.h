@@ -14,6 +14,8 @@ void         _exit(int) __attribute__((noreturn));
 unsigned int alarm(unsigned int);
 int          chdir(const char*);
 int          close(int);
+int          dup(int);
+int          dup2(int, int);
 int          execve(const char*, char *const [], char *const []);
 int          fork();
 char*        getcwd(char*, size_t);

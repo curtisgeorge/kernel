@@ -1,5 +1,5 @@
 #include <ctype.h>
 
-int isuppper(int c) {
+int isupper(int c) {
   return 0;
 }

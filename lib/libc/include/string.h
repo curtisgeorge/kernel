@@ -11,6 +11,7 @@ char*  strcpy(char*, const char*);
 int    strcmp(const char*, const char*);
 char*  strerror(int);
 size_t strlen(const char*);
+char*  strpbrk(const char*, const char*);
 char*  strrchr(const char*, int);
 int    strncmp(const char*, const char*, size_t);
 char*  strncpy(char*, const char*, size_t);

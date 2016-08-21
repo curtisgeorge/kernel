@@ -5,6 +5,7 @@
 #define SIGHUP  1
 #define SIGINT  2
 #define SIGQUIT 3
+#define SIGABRT 6
 #define	SIGFPE  8
 #define SIGPIPE 13
 #define SIGALRM 14

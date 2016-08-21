@@ -19,6 +19,13 @@
 #define S_ISGID 02000
 #define S_ISVTX 01000
 
+#define S_ISBLK(m)  0
+#define S_ISCHR(m)  0
+#define S_ISDIR(m)  0
+#define S_ISFIFO(m) 0
+#define S_ISREG(m)  0
+#define S_ISLNK(m)  0
+
 # define st_atime st_atim.tv_sec
 # define st_mtime st_mtim.tv_sec
 # define st_ctime st_ctim.tv_sec
@@ -56,5 +63,8 @@ struct stat64 {
 };
 
 int fstat(int, struct stat*);
+int fstat64(int, struct stat64*);
+int lstat(const char*, struct stat*);
+int lstat64(const char*, struct stat64*);
 int stat(const char*, struct stat*);
 int stat64(const char*, struct stat64*);

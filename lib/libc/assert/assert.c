@@ -2,7 +2,7 @@
 #include <stdlib.h>
 #include <stdio.h>
 
-void __assert_func(const char* expression, const char* file, int line, const char* func) {
+void __assert(const char* expression, const char* file, int line, const char* func) {
   if(func == NULL) {
     fprintf(stderr, "Assertion failed: %s, file %s, line %d.", expression, file, line);
   }
