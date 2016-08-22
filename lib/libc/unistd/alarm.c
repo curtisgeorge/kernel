@@ -1,5 +1,6 @@
 #include <unistd.h>
+#include <syscall.h>
 
 unsigned int alarm(unsigned int seconds) {
-  return 0;
+  return syscall_alarm(seconds);
 }

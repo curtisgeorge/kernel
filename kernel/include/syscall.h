@@ -26,6 +26,10 @@ static inline int syscall_execve(const char* filename, char *const argv[], char 
   return syscall3(11, (unsigned int) filename, (unsigned int) argv, (unsigned int) envp);
 }
 
+static inline int syscall_alarm(unsigned int seconds) {
+  return syscall1(27, seconds);
+}
+
 static inline int syscall_kill(int pid, int sig) {
   return syscall2(37, pid, sig);
 }

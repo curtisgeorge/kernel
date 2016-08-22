@@ -41,5 +41,6 @@ int    sprintf(char*, const char*, ...);
 int    ungetc(int, FILE*);
 int    vfprintf(FILE*, const char*, va_list);
 int    vprintf(const char*, va_list);
+int    vsnprintf(char*, size_t, const char*, va_list);
 
 int    fileno(FILE*);

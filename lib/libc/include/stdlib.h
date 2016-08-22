@@ -23,3 +23,4 @@ void*         realloc(void*, size_t);
 double        strtod(const char*, char**);
 long int      strtol(const char*, char**, int);
 long long int strtoll(const char*, char**, int);
+unsigned long long int strtoull(const char*, char**, int);

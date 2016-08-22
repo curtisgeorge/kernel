@@ -9,6 +9,7 @@
 
 extern char* optarg;
 extern int optind, opterr, optopt;
+extern char** environ;
 
 void         _exit(int) __attribute__((noreturn));
 int          access(const char*, int);
