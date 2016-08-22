@@ -13,6 +13,14 @@ static inline int syscall1(int syscall_no, unsigned int arg1) {
   return r0;
 }
 
+static inline int syscall2(int syscall_no, unsigned int arg1, unsigned int arg2) {
+  register int r0 asm("r0") = syscall_no;
+  register unsigned int r1 asm("r1") = arg1;
+  register unsigned int r2 asm("r2") = arg2;
+  asm volatile ("svc #0x80" : "=r"(r0) : "r"(r0), "r"(r1), "r"(r2));
+  return r0;
+}
+
 static inline int syscall3(int syscall_no, unsigned int arg1, unsigned int arg2, unsigned int arg3) {
   register int r0 asm("r0") = syscall_no;
   register unsigned int r1 asm("r1") = arg1;

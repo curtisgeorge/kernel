@@ -1,5 +1,5 @@
 #include <stdlib.h>
 
 double atof(const char* str) {
-  return 0;
+  return strtod(str, (char**) NULL);
 }

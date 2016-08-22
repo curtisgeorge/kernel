@@ -1,5 +1,6 @@
 #include <signal.h>
+#include <syscall.h>
 
 int kill(pid_t pid, int sig) {
-  return 0;
+  return syscall_kill(pid, sig);
 }

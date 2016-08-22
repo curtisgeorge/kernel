@@ -25,6 +25,7 @@
 #define S_ISFIFO(m) 0
 #define S_ISREG(m)  0
 #define S_ISLNK(m)  0
+#define S_ISSOCK(m) 0
 
 # define st_atime st_atim.tv_sec
 # define st_mtime st_mtim.tv_sec
@@ -62,9 +63,15 @@ struct stat64 {
   blkcnt_t st_blocks;
 };
 
-int fstat(int, struct stat*);
-int fstat64(int, struct stat64*);
-int lstat(const char*, struct stat*);
-int lstat64(const char*, struct stat64*);
-int stat(const char*, struct stat*);
-int stat64(const char*, struct stat64*);
+int    chmod(const char*, mode_t);
+int    fchmod(int, mode_t);
+int    fstat(int, struct stat*);
+int    fstat64(int, struct stat64*);
+int    lstat(const char*, struct stat*);
+int    lstat64(const char*, struct stat64*);
+int    mkdir(const char*, mode_t);
+int    mkfifio(const char*, mode_t);
+int    mknod(const char*, mode_t, dev_t);
+int    stat(const char*, struct stat*);
+int    stat64(const char*, struct stat64*);
+mode_t umask(mode_t);

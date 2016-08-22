@@ -54,7 +54,16 @@ struct sigaction {
 extern const char *const sys_siglist[];
 
 int  kill(pid_t, int);
+int  killpg(pid_t, int);
 int  raise(int);
+int  sigaction(int, const struct sigaction*, struct sigaction*);
 int  sigemptyset(sigset_t*);
-int  sigprocmask(int, const sigset_t*, sigset_t*);
+int  sigfillset(sigset_t*);
+int  sighold(int);
+int  sigignore(int);
+int  siginterrupt(int, int);
+int  sigismember(const sigset_t*, int);
 void (*signal(int, void (*)(int)))(int);
+int  sigpause(int);
+int  sigpending(sigset_t*);
+int  sigprocmask(int, const sigset_t*, sigset_t*);

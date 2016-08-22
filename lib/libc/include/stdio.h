@@ -14,6 +14,7 @@
 #define EOF -1
 
 typedef struct {
+  short _file;
 } FILE;
 
 extern FILE* stdin;

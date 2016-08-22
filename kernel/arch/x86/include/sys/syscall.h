@@ -12,6 +12,12 @@ static inline int syscall1(int syscall_no, unsigned int arg1) {
   return ret;
 }
 
+static inline int syscall2(int syscall_no, unsigned int arg1, unsigned int arg2) {
+  int ret;
+  asm volatile ("int $0x80" : "=a"(ret) : "a"(syscall_no), "b"(arg1), "c"(arg2));
+  return ret;
+}
+
 static inline int syscall3(int syscall_no, unsigned int arg1, unsigned int arg2, unsigned int arg3) {
   int ret;
   asm volatile ("int $0x80" : "=a"(ret) : "a"(syscall_no), "b"(arg1), "c"(arg2), "d"(arg3));

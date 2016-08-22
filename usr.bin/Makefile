@@ -6,9 +6,7 @@ CC=i386-elf-gcc
 else ifeq ($(ARCH),arm)
 CC=arm-none-eabi-gcc
 endif
-CFLAGS=-O2 -I../include
-LDFLAGS=-L../lib/libc
-OBJS=crt0.o hello
+OBJS=hello
 
 all: $(OBJS)
 

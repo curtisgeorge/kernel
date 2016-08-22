@@ -18,4 +18,4 @@ libc.a: $(OBJS)
 	$(AR) r libc.a $(OBJS)
 
 clean:
-	rm -rf libc.a $(OBJS)
+	rm -rf crt0.o libc.a $(OBJS)
