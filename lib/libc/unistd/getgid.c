@@ -1,5 +1,6 @@
 #include <unistd.h>
+#include <syscall.h>
 
 gid_t getgid() {
-  return 0;
+  return syscall_getgid();
 }

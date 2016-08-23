@@ -1,5 +1,6 @@
 #include <unistd.h>
+#include <syscall.h>
 
 int close(int fildes) {
-  return 0;
+  return syscall_close(fildes);
 }

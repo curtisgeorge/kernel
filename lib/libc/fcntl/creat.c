@@ -1,5 +1,6 @@
 #include <fcntl.h>
+#include <syscall.h>
 
 int creat(const char* path, mode_t mod) {
-  return 0;
+  return syscall_creat(path, mod);
 }

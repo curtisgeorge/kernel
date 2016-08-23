@@ -1,5 +1,5 @@
 #include <stdlib.h>
 
 int atoi(const char* str) {
-  return strtol(str, (char**) NULL, 10);
+  return (int) strtol(str, (char**) NULL, 10);
 }

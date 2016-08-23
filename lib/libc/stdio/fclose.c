@@ -1,5 +1,6 @@
 #include <stdio.h>
+#include <unistd.h>
 
 int fclose(FILE* f) {
-  return -1;
+  return close(f->_file);
 }

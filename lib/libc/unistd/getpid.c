@@ -1,5 +1,6 @@
 #include <unistd.h>
+#include <syscall.h>
 
 pid_t getpid() {
-  return 0;
+  return (pid_t) syscall_getpid();
 }
