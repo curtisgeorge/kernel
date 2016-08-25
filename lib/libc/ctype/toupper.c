@@ -1,5 +1,8 @@
 #include <ctype.h>
 
 int toupper(int c) {
-  return 0;
+  if ((unsigned int) (c - 'a') < 26) {
+    c &= ~0x20;
+  }
+  return c;
 }

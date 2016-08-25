@@ -1,5 +1,5 @@
 #include <ctype.h>
 
 int isupper(int c) {
-  return 0;
+  return (unsigned int) c - 'A' < 26;
 }

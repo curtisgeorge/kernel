@@ -1,5 +1,5 @@
 #include <dirent.h>
 
 long telldir(DIR* dirp) {
-  return 0;
+  return dirp->filepos;
 }

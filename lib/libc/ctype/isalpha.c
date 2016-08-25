@@ -1,5 +1,5 @@
 #include <ctype.h>
 
 int isalpha(int c) {
-  return 0;
+  return islower(c) || isupper(c);
 }

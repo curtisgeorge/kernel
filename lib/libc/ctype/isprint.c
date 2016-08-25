@@ -1,5 +1,5 @@
 #include <ctype.h>
 
 int isprint(int c) {
-  return 0;
+  return (unsigned int) c - '!' < 94;
 }

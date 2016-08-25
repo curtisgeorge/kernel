@@ -4,6 +4,7 @@
 
 typedef struct {
   int fd;
+  long filepos;
 } DIR;
 
 struct dirent {
